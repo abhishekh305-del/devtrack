@@ -1,0 +1,238 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #202338;
+  background: #f6f7fb;
+}
+
+button, input {
+  font: inherit;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 28px 18px;
+  background: white;
+  border-right: 1px solid #e8e9f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  font-size: 21px;
+  margin: 0 0 45px;
+}
+
+.sidebar p {
+  padding: 12px;
+  border-radius: 8px;
+  color: #777b8d;
+  font-size: 14px;
+}
+
+.sidebar p.active {
+  color: #6554df;
+  background: #f0edff;
+  font-weight: bold;
+}
+
+.user {
+  margin-top: auto;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.main {
+  flex: 1;
+  padding: 0 38px 40px;
+}
+
+header {
+  padding: 22px 0;
+  border-bottom: 1px solid #e7e8ef;
+  color: #777b8d;
+  font-size: 13px;
+}
+
+.welcome {
+  padding: 30px 0 25px;
+}
+
+.welcome small {
+  color: #6958e4;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+.welcome p, .task-heading p {
+  color: #8c90a1;
+  font-size: 14px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card, .task-panel {
+  background: white;
+  border: 1px solid #e9eaf0;
+  border-radius: 12px;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card span {
+  color: #85899a;
+  font-size: 13px;
+}
+
+.card h2 {
+  font-size: 28px;
+  margin: 12px 0 0;
+}
+
+.task-panel {
+  margin-top: 24px;
+  padding: 22px;
+}
+
+.task-heading h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.task-heading p {
+  margin: 7px 0 20px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #dedfea;
+  border-radius: 8px;
+}
+
+form button {
+  border: 0;
+  padding: 10px 16px;
+  color: white;
+  background: #6554df;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid #eeeef3;
+}
+
+.task-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title strong {
+  font-size: 14px;
+}
+
+.task-title small {
+  display: block;
+  margin-top: 6px;
+  color: #8c90a1;
+  font-size: 12px;
+}
+
+.status, .delete {
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.status {
+  background: #f0edff;
+  color: #6554df;
+  font-size: 12px;
+}
+
+.delete {
+  background: #fff0ef;
+  color: #d65353;
+  font-size: 18px;
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    width: 65px;
+    padding: 20px 8px;
+  }
+
+  .sidebar h2 {
+    font-size: 0;
+  }
+
+  .sidebar p {
+    font-size: 0;
+    text-align: center;
+  }
+
+  .user {
+    font-size: 0;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main {
+    padding: 0 16px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    gap: 8px;
+  }
+
+  .card, .task-panel {
+    padding: 12px;
+  }
+
+  .task {
+    flex-wrap: wrap;
+  }
+
+  .task-title {
+    flex-basis: 100%;
+  }
+}
