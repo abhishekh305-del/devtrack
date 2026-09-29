@@ -1,17 +1,29 @@
-
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #202338;
-  background: #f6f7fb;
+html {
+  scroll-behavior: smooth;
 }
 
-button, input {
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f6f7fb;
+  color: #202338;
+}
+
+button,
+input {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 .app {
@@ -19,50 +31,118 @@ button, input {
   min-height: 100vh;
 }
 
+/* =========================
+   SIDEBAR
+========================= */
+
 .sidebar {
   width: 220px;
+  min-height: 100vh;
   padding: 28px 18px;
-  background: white;
+  background: #ffffff;
   border-right: 1px solid #e8e9f0;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-.sidebar h2 {
-  font-size: 21px;
+.logo {
   margin: 0 0 45px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #202338;
 }
 
-.sidebar p {
+.nav-item {
+  margin: 6px 0;
   padding: 12px;
   border-radius: 8px;
+
   color: #777b8d;
   font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.sidebar p.active {
-  color: #6554df;
+.nav-item.active {
   background: #f0edff;
-  font-weight: bold;
+  color: #6554df;
+  font-weight: 700;
+}
+
+.nav-item:hover {
+  background: #f5f4ff;
 }
 
 .user {
-  margin-top: auto;
-  border-top: 1px solid #eee;
-  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding-top: 18px;
+  border-top: 1px solid #eeeeee;
+
+  font-size: 13px;
 }
+
+.user small {
+  display: block;
+  margin-top: 4px;
+  color: #8c90a1;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: #e9e5ff;
+  color: #6554df;
+
+  font-weight: 700;
+}
+
+/* =========================
+   MAIN
+========================= */
 
 .main {
   flex: 1;
+  min-width: 0;
   padding: 0 38px 40px;
 }
 
-header {
-  padding: 22px 0;
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   border-bottom: 1px solid #e7e8ef;
+
   color: #777b8d;
   font-size: 13px;
 }
+
+.status-text {
+  color: #73778a;
+  font-size: 12px;
+}
+
+/* =========================
+   WELCOME
+========================= */
 
 .welcome {
   padding: 30px 0 25px;
@@ -70,35 +150,54 @@ header {
 
 .welcome small {
   color: #6958e4;
+
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 700;
+
   letter-spacing: 1px;
 }
 
-h1 {
-  font-size: 27px;
+.welcome h1 {
   margin: 10px 0;
+
+  font-size: 27px;
+  line-height: 1.2;
+
+  letter-spacing: -0.5px;
 }
 
-.welcome p, .task-heading p {
+.welcome p {
+  margin: 0;
+
   color: #8c90a1;
   font-size: 14px;
 }
 
+/* =========================
+   STATISTICS
+========================= */
+
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-}
-
-.card, .task-panel {
-  background: white;
-  border: 1px solid #e9eaf0;
-  border-radius: 12px;
 }
 
 .card {
   padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e9eaf0;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(31, 35, 56, 0.06);
 }
 
 .card span {
@@ -107,52 +206,124 @@ h1 {
 }
 
 .card h2 {
-  font-size: 28px;
   margin: 12px 0 0;
+
+  font-size: 28px;
+  color: #202338;
 }
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+
+  margin-top: 12px;
+
+  background: #eeeeF5;
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+
+  background: #6554df;
+  border-radius: 20px;
+
+  transition: width 0.3s ease;
+}
+
+/* =========================
+   TASK PANEL
+========================= */
 
 .task-panel {
   margin-top: 24px;
   padding: 22px;
+
+  background: #ffffff;
+  border: 1px solid #e9eaf0;
+  border-radius: 12px;
 }
 
 .task-heading h2 {
   margin: 0;
+
   font-size: 18px;
 }
 
 .task-heading p {
   margin: 7px 0 20px;
+
+  color: #8c90a1;
+  font-size: 14px;
 }
 
-form {
+/* =========================
+   FORM
+========================= */
+
+.task-form {
   display: flex;
   gap: 10px;
+
   margin-bottom: 15px;
 }
 
-input {
+.task-form input {
   flex: 1;
   min-width: 0;
-  padding: 12px;
+
+  padding: 12px 13px;
+
+  background: #ffffff;
+
   border: 1px solid #dedfea;
   border-radius: 8px;
+
+  outline: none;
+
+  color: #202338;
 }
 
-form button {
-  border: 0;
-  padding: 10px 16px;
-  color: white;
-  background: #6554df;
+.task-form input:focus {
+  border-color: #6554df;
+  box-shadow: 0 0 0 3px rgba(101, 84, 223, 0.08);
+}
+
+.task-form button {
+  border: none;
   border-radius: 8px;
-  cursor: pointer;
+
+  padding: 10px 16px;
+
+  background: #6554df;
+  color: #ffffff;
+
+  font-weight: 600;
+
+  transition: background 0.2s ease;
+}
+
+.task-form button:hover {
+  background: #5746cf;
+}
+
+/* =========================
+   TASK LIST
+========================= */
+
+.task-list {
+  width: 100%;
 }
 
 .task {
   display: flex;
   align-items: center;
   gap: 12px;
+
   padding: 16px 0;
+
   border-top: 1px solid #eeeef3;
 }
 
@@ -162,70 +333,177 @@ form button {
 }
 
 .task-title strong {
+  display: block;
+
+  color: #202338;
+
   font-size: 14px;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
 }
 
 .task-title small {
   display: block;
+
   margin-top: 6px;
+
   color: #8c90a1;
   font-size: 12px;
 }
 
-.status, .delete {
-  padding: 8px 10px;
-  border: 0;
-  border-radius: 7px;
-  cursor: pointer;
-}
+/* =========================
+   STATUS BUTTON
+========================= */
 
-.status {
+.status-button {
+  flex-shrink: 0;
+
+  padding: 8px 10px;
+
+  border: none;
+  border-radius: 7px;
+
   background: #f0edff;
   color: #6554df;
+
+  font-size: 12px;
+
+  transition: 0.2s ease;
+}
+
+.status-button:hover {
+  background: #e6e1ff;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-button {
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #fff0ef;
+  color: #d65353;
+
+  font-size: 18px;
+  line-height: 1;
+
+  transition: 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #ffe1df;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+  padding: 30px 15px;
+
+  text-align: center;
+
+  border-top: 1px solid #eeeef3;
+}
+
+.empty-state h3 {
+  margin: 0 0 7px;
+
+  font-size: 15px;
+}
+
+.empty-state p {
+  margin: 0;
+
+  color: #8c90a1;
+  font-size: 13px;
+}
+
+/* =========================
+   TIP
+========================= */
+
+.task-tip {
+  margin-top: 8px;
+  padding-top: 14px;
+
+  border-top: 1px solid #eeeef3;
+
+  color: #8c90a1;
   font-size: 12px;
 }
 
-.delete {
-  background: #fff0ef;
-  color: #d65353;
-  font-size: 18px;
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .main {
+    padding: 0 22px 35px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 650px) {
   .sidebar {
-    width: 65px;
+    width: 70px;
     padding: 20px 8px;
   }
 
-  .sidebar h2 {
-    font-size: 0;
-  }
-
-  .sidebar p {
+  .logo {
     font-size: 0;
     text-align: center;
   }
 
-  .user {
-    font-size: 0;
+  .logo::first-letter {
+    font-size: 20px;
   }
 
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
+  .nav-item {
+    font-size: 0;
+    text-align: center;
+  }
+
+  .nav-item::first-letter {
+    font-size: 18px;
+  }
+
+  .user {
+    justify-content: center;
+    border-top: none;
+  }
+
+  .user > div:last-child {
+    display: none;
   }
 
   .main {
-    padding: 0 16px 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats {
-    gap: 8px;
+    padding: 0 14px 30px;
   }
 
-  .card, .task-panel {
-    padding: 12px;
+  .topbar {
+    font-size: 11px;
+  }
+
+  .status-text {
+    display: none;
+  }
+
+  .welcome h1 {
+    font-size: 23px;
   }
 
   .task {
@@ -234,5 +512,31 @@ form button {
 
   .task-title {
     flex-basis: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    gap: 8px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card h2 {
+    font-size: 23px;
+  }
+
+  .task-panel {
+    padding: 14px;
+  }
+
+  .task-form {
+    flex-direction: column;
+  }
+
+  .task-form button {
+    width: 100%;
   }
 }
