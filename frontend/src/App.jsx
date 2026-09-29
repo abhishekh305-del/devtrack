@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API_URL = "http://localhost:8080/api/tasks";
+const API_URL =
+  "https://bookish-goggles-r4j4gv6r54jp3xqgj-8080.app.github.dev/api/tasks";
 
 const defaultTasks = [
   { id: 1, title: "Design the dashboard", status: "In Progress" },
