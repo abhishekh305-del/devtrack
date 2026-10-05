@@ -13,6 +13,9 @@ function App() {
   const [newTask, setNewTask] = useState("");
   const [newPriority, setNewPriority] = useState("MEDIUM");
   const [newDueDate, setNewDueDate] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [priorityFilter, setPriorityFilter] = useState("All");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,6 +43,18 @@ function App() {
     tasks.length > 0
       ? Math.round((completed / tasks.length) * 100)
       : 0;
+  const visibleTasks = tasks.filter((task) => {
+    const matchesTitle = task.title
+      .toLowerCase()
+      .includes(searchText.trim().toLowerCase());
+    const matchesStatus =
+      statusFilter === "All" || task.status === statusFilter;
+    const matchesPriority =
+      priorityFilter === "All" ||
+      (task.priority || "MEDIUM") === priorityFilter;
+
+    return matchesTitle && matchesStatus && matchesPriority;
+  });
 
   async function addTask(event) {
     event.preventDefault();
@@ -252,6 +267,38 @@ function App() {
             </button>
           </form>
 
+          <div className="task-filters">
+            <input
+              type="search"
+              value={searchText}
+              onChange={(event) => setSearchText(event.target.value)}
+              placeholder="Search tasks by title..."
+              aria-label="Search tasks by title"
+            />
+
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value)}
+              aria-label="Filter by status"
+            >
+              <option value="All">All statuses</option>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+
+            <select
+              value={priorityFilter}
+              onChange={(event) => setPriorityFilter(event.target.value)}
+              aria-label="Filter by priority"
+            >
+              <option value="All">All priorities</option>
+              <option value="LOW">LOW</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="HIGH">HIGH</option>
+            </select>
+          </div>
+
           {loading ? (
             <p className="empty-state">
               Loading tasks...
@@ -263,8 +310,13 @@ function App() {
                 Add your first task using the box above.
               </p>
             </div>
+          ) : visibleTasks.length === 0 ? (
+            <div className="empty-state">
+              <h3>No matching tasks</h3>
+              <p>Try changing your search or filters.</p>
+            </div>
           ) : (
-            tasks.map((task) => (
+            visibleTasks.map((task) => (
               <div className="task" key={task.id}>
                 <div className="task-title">
                   <strong>{task.title}</strong>

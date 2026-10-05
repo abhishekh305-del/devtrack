@@ -316,6 +316,30 @@ button {
   background: #5746cf;
 }
 
+.task-filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) repeat(2, minmax(140px, 0.45fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.task-filters input,
+.task-filters select {
+  min-width: 0;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #dedfea;
+  border-radius: 8px;
+  outline: none;
+  color: #202338;
+}
+
+.task-filters input:focus,
+.task-filters select:focus {
+  border-color: #6554df;
+  box-shadow: 0 0 0 3px rgba(101, 84, 223, 0.08);
+}
+
 /* =========================
    TASK LIST
 ========================= */
@@ -575,6 +599,10 @@ button {
 
   .task-form {
     flex-direction: column;
+  }
+
+  .task-filters {
+    grid-template-columns: 1fr;
   }
 
   .task-form button {
