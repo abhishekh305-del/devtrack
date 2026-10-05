@@ -2,6 +2,7 @@ package com.devtrack.devtrack_backend.controller;
 
 import com.devtrack.devtrack_backend.model.Task;
 import com.devtrack.devtrack_backend.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +24,13 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
+    public Task createTask(@Valid @RequestBody Task task) {
         return taskService.createTask(task);
     }
 
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id,
-                           @RequestBody Task task) {
+                           @Valid @RequestBody Task task) {
         return taskService.updateTask(id, task);
     }
 
