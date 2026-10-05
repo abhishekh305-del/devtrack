@@ -13,6 +13,8 @@ const defaultTasks = [
 function App() {
   const [tasks, setTasks] = useState(defaultTasks);
   const [newTask, setNewTask] = useState("");
+  const [newPriority, setNewPriority] = useState("MEDIUM");
+  const [newDueDate, setNewDueDate] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,6 +59,8 @@ function App() {
         body: JSON.stringify({
           title,
           status: "To Do",
+          priority: newPriority,
+          dueDate: newDueDate || null,
         }),
       });
 
@@ -72,6 +76,8 @@ function App() {
       ]);
 
       setNewTask("");
+      setNewPriority("MEDIUM");
+      setNewDueDate("");
     } catch (error) {
       console.error(error);
       alert("Could not add task");
@@ -96,6 +102,8 @@ function App() {
           body: JSON.stringify({
             title: task.title,
             status: nextStatus[task.status],
+            priority: task.priority || "MEDIUM",
+            dueDate: task.dueDate || null,
           }),
         }
       );
@@ -224,6 +232,23 @@ function App() {
               placeholder="Enter a new task..."
             />
 
+            <select
+              value={newPriority}
+              onChange={(event) => setNewPriority(event.target.value)}
+              aria-label="Task priority"
+            >
+              <option value="LOW">Low priority</option>
+              <option value="MEDIUM">Medium priority</option>
+              <option value="HIGH">High priority</option>
+            </select>
+
+            <input
+              type="date"
+              value={newDueDate}
+              onChange={(event) => setNewDueDate(event.target.value)}
+              aria-label="Task due date"
+            />
+
             <button type="submit">
               + Add task
             </button>
@@ -245,7 +270,13 @@ function App() {
               <div className="task" key={task.id}>
                 <div className="task-title">
                   <strong>{task.title}</strong>
-                  <small>{task.status}</small>
+                  <div className="task-meta">
+                    <small>{task.status}</small>
+                    <span className={`priority priority-${(task.priority || "MEDIUM").toLowerCase()}`}>
+                      {task.priority || "MEDIUM"}
+                    </span>
+                    <small>Due {task.dueDate || "not set"}</small>
+                  </div>
                 </div>
 
                 <button

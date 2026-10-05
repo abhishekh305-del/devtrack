@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -270,7 +271,8 @@ button {
   margin-bottom: 15px;
 }
 
-.task-form input {
+.task-form input,
+.task-form select {
   flex: 1;
   min-width: 0;
 
@@ -287,6 +289,11 @@ button {
 }
 
 .task-form input:focus {
+  border-color: #6554df;
+  box-shadow: 0 0 0 3px rgba(101, 84, 223, 0.08);
+}
+
+.task-form select:focus {
   border-color: #6554df;
   box-shadow: 0 0 0 3px rgba(101, 84, 223, 0.08);
 }
@@ -350,6 +357,40 @@ button {
 
   color: #8c90a1;
   font-size: 12px;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.task-meta small {
+  margin-top: 6px;
+}
+
+.priority {
+  margin-top: 6px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.priority-low {
+  background: #e9f5ee;
+  color: #34734c;
+}
+
+.priority-medium {
+  background: #fff4db;
+  color: #946b14;
+}
+
+.priority-high {
+  background: #fff0ef;
+  color: #bd4545;
 }
 
 /* =========================

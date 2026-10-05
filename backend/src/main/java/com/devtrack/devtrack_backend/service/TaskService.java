@@ -29,6 +29,12 @@ public class TaskService {
 
         task.setTitle(updatedTask.getTitle());
         task.setStatus(updatedTask.getStatus());
+        if (updatedTask.getPriority() != null) {
+            task.setPriority(updatedTask.getPriority());
+        }
+        if (updatedTask.getDueDate() != null) {
+            task.setDueDate(updatedTask.getDueDate());
+        }
 
         return taskRepository.save(task);
     }
