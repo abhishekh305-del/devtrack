@@ -29,17 +29,17 @@ public class TaskService {
 
         task.setTitle(updatedTask.getTitle());
         task.setStatus(updatedTask.getStatus());
-        if (updatedTask.getPriority() != null) {
-            task.setPriority(updatedTask.getPriority());
-        }
-        if (updatedTask.getDueDate() != null) {
-            task.setDueDate(updatedTask.getDueDate());
-        }
+        task.setPriority(updatedTask.getPriority());
+        task.setDueDate(updatedTask.getDueDate());
 
         return taskRepository.save(task);
     }
 
     public void deleteTask(Long id) {
+        if (!taskRepository.existsById(id)) {
+            throw new RuntimeException("Task not found");
+        }
+
         taskRepository.deleteById(id);
     }
 }

@@ -1,12 +1,6 @@
 package com.devtrack.devtrack_backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -18,16 +12,10 @@ public class Task {
 
     private String title;
     private String status;
-    @Enumerated(EnumType.STRING)
-    private TaskPriority priority = TaskPriority.MEDIUM;
+    private String priority;
     private LocalDate dueDate;
 
     public Task() {
-    }
-
-    public Task(String title, String status) {
-        this.title = title;
-        this.status = status;
     }
 
     public Long getId() {
@@ -50,11 +38,11 @@ public class Task {
         this.status = status;
     }
 
-    public TaskPriority getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(TaskPriority priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
